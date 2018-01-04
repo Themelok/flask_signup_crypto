@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if not session.logged_in %}
+        <h3>Registration form:</h3>
+        <form action="{{ url_for('signup') }}" method="post" class="add-entry">
+            <dl>
+                <dt>Username:</dt>
+                <dd><input type="text" size="15" name="username"></dd>
+                <dt>Password:</dt>
+                <dd><input type="password" size="15" name="password"></dd>
+                <dt>Age:</dt>
+                <dd><input type="number" name="age"></dd>
+                <dt>Email:</dt>
+                <dd><input type="email" size="15" name="email"></dd>
+                <dd><input type="submit" value="Sign UP"></dd>
+            </dl>
+        </form>
+    {% else %}
+        <h3>User's Credentials</h3>
+        <dl>
+            {% for key,value in creds.items() %}
+            <dt><strong>{{ key }}</strong></dt>
+                <dd>{{ value }}</dd>
+            {% endfor %}
+        </dl>
+    {% endif %}
+{% endblock %}
